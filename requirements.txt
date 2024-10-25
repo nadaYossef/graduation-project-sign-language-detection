@@ -3,9 +3,9 @@ opencv-python
 numpy
 pandas
 matplotlib
-tensorflow==2.6.4
-keras==2.6.0
+tensorflow
+keras
 pyttsx3
 pillow
-scikit-learn==1.0.2
+scikit-learn
 pickle5
