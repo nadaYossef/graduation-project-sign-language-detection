@@ -1,5 +1,5 @@
 tk
-opencv-python==4.5.4
+opencv-python==4.5.5
 numpy==1.21.6
 pandas==1.3.5
 matplotlib==3.5.2
