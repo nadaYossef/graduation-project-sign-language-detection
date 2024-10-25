@@ -7,7 +7,7 @@ import tensorflow as tf
 from PIL import Image, ImageTk
 
 # Load the trained model
-model = tf.keras.models.load_model("sign-language-mnist.h5")
+model = tf.keras.models.load_model("sign-language.h5")
 
 # Initialize text-to-speech engine
 tts_engine = pyttsx3.init()
