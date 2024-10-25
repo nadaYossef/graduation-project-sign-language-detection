@@ -2,6 +2,7 @@ import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import math  # mathematical functions
 import cv2  # OpenCV for image processing
+import matplotlib  
 import matplotlib.pyplot as plt  # data visualization
 
 # TensorFlow and Keras for building and training neural networks
@@ -16,6 +17,7 @@ from tensorflow.keras.regularizers import l2
 from tensorflow.keras.callbacks import LearningRateScheduler
 
 # Sklearn for data processing and evaluation
+import sklearn  # Import the sklearn module to access its version
 from sklearn.model_selection import train_test_split, StratifiedKFold, RepeatedKFold, cross_val_score
 from sklearn.metrics import f1_score, classification_report
 from sklearn.datasets import make_classification
@@ -63,7 +65,7 @@ def create_data_generator():
     Returns:
         ImageDataGenerator: The data generator for image augmentation.
     """
-    return ImageDataGenerator(rotation_range=10, zoom_range=0.1, width_shift_range=0.1,
+    return ImageDataGenerator(rotation_range=10, zoom_range=0.1, width_shift_range=0.1, 
                                height_shift_range=0.1, shear_range=0.1, horizontal_flip=True)
 
 def step_decay(epoch):
@@ -185,7 +187,7 @@ def load_trained_model(file_name):
 
 def main():
     # Load data
-    train_data = load_data('sign_mnist_train.csv')
+    train_data = load_data('../input/sign-language-mnist/sign_mnist_train/sign_mnist_train.csv')
     inputs, targets = preprocess_data(train_data)
 
     # Split data
@@ -196,11 +198,11 @@ def main():
     mean_accuracy, std_accuracy = train_model(model, inputs, targets, x_test, y_test)
 
     # Save model
-    save_model(model, "sign-language.h5")
+    save_model(model, "sign-language-mnist.h5")
 
     # Print model summary and accuracy
     print("Model accuracy: %.2f%% (+/- %.2f%%)" % (mean_accuracy, std_accuracy))
-    loaded_model = load_trained_model("sign-languaget.h5")
+    loaded_model = load_trained_model("sign-language-mnist.h5")
     print(loaded_model.summary())
 
 if __name__ == "__main__":
