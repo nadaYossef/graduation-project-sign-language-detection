@@ -2,7 +2,7 @@ import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import math  # mathematical functions
 import cv2  # OpenCV for image processing
-import matplotlib  
+import matplotlib  # Importing for version check
 import matplotlib.pyplot as plt  # data visualization
 
 # TensorFlow and Keras for building and training neural networks
@@ -211,3 +211,4 @@ if __name__ == "__main__":
     # Save the necessary variables and model using pickle
     with open('model_data.pkl', 'wb') as f:
         pickle.dump((inputs, targets), f)
+
