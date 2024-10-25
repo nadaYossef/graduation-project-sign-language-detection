@@ -1,5 +1,5 @@
 tk
-opencv-python-headless
+opencv-python
 numpy
 pandas
 matplotlib
@@ -8,3 +8,4 @@ keras
 pyttsx3
 pillow
 scikit-learn
+pickle5
