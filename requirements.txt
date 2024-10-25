@@ -8,4 +8,4 @@ keras
 pyttsx3
 pillow
 scikit-learn
-pickle5
+pickle
