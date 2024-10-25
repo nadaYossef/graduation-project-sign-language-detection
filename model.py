@@ -185,7 +185,7 @@ def load_trained_model(file_name):
 
 def main():
     # Load data
-    train_data = load_data('../input/sign-language-mnist/sign_mnist_train/sign_mnist_train.csv')
+    train_data = load_data('sign_mnist_train.csv')
     inputs, targets = preprocess_data(train_data)
 
     # Split data
@@ -196,11 +196,11 @@ def main():
     mean_accuracy, std_accuracy = train_model(model, inputs, targets, x_test, y_test)
 
     # Save model
-    save_model(model, "sign-language-mnist.h5")
+    save_model(model, "sign-language.h5")
 
     # Print model summary and accuracy
     print("Model accuracy: %.2f%% (+/- %.2f%%)" % (mean_accuracy, std_accuracy))
-    loaded_model = load_trained_model("sign-language-mnist.h5")
+    loaded_model = load_trained_model("sign-languaget.h5")
     print(loaded_model.summary())
 
 if __name__ == "__main__":
