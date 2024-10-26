@@ -1,0 +1,12 @@
+tk
+opencv-python
+pandas
+numpy==1.25.2
+matplotlib
+tensorflow=2.10.0
+keras==2.10.0
+pyttsx3
+pillow
+scikit-learn
+scikeras==0.11.0
+

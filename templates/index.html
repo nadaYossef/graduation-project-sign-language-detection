@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #2C2F33;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            background-color: #7289DA;
+        }
+        nav a {
+            color: #FFD700;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FFFFFF;
+        }
+        section {
+            display: none; /* Hide sections by default */
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .active {
+            display: flex; /* Show the active section */
+        }
+        /* Hero Section */
+        #home {
+            background: linear-gradient(135deg, #7289DA, #99AAB5);
+            color: #FFD700;
+            padding: 60px 0;
+        }
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+        .footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* Try It Out Styles */
+        #video {
+            display: none; /* Initially hide the video */
+            width: 80%;
+            margin-top: 20px;
+        }
+        /* Responsive Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">SL Detection</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('about')">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('try-it-out')">Try It Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <h1>Sign Language Detection</h1>
+        <p>Translating sign language gestures into text and speech in real-time, bridging communication gaps for a more inclusive world.</p>
+        <img src="{{ url_for('static', filename='home-image.jpg') }}" alt="Home Image" class="rounded shadow">
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About the Project</h2>
+        <p>This project uses machine learning to recognize hand gestures and translate them into meaningful text and speech, aiming to foster inclusivity for those with hearing impairments.</p>
+        <img src="{{ url_for('static', filename='about-image.jpg') }}" alt="About Image" class="rounded shadow">
+    </section>
+
+    <!-- Try It Out Section -->
+    <section id="try-it-out">
+        <h2>Try It Out</h2>
+        <button id="toggleButton" class="btn btn-primary">Open Webcam</button>
+        <img id="video" src="{{ url_for('video_feed') }}" alt="Video Feed" class="rounded shadow">
+        <div id="confidence-level" class="progress" style="margin-top: 20px;">
+            <div id="confidence-bar" class="progress-bar" role="progressbar"></div>
+        </div>
+        <h3>Recognized Letters:</h3>
+        <div id="recognized-letters"></div>
+        <img src="{{ url_for('static', filename='try-it-out-image.jpg') }}" alt="Try It Out Image" class="rounded shadow">
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Created with ❤️ by FCDS TE</p>
+        <p><a href="https://github.com/your-repo">GitHub Repository</a></p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        const button = document.getElementById('toggleButton');
+        const video = document.getElementById('video');
+
+        button.addEventListener('click', () => {
+            if (video.style.display === 'none' || video.style.display === '') {
+                video.style.display = 'block';
+                button.textContent = 'Close Webcam';
+            } else {
+                video.style.display = 'none';
+                button.textContent = 'Open Webcam';
+            }
+        });
+    </script>
+
+</body>
+</html>
