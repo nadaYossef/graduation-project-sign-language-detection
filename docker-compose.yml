@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DISPLAY=${DISPLAY}
+    devices:
+      - "/dev/video0:/dev/video0"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    privileged: true
