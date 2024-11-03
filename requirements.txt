@@ -1,13 +1,13 @@
 tk
 opencv-python
 pandas
-numpy==1.25.2
+numpy
 matplotlib
-tensorflow==2.10.0
-keras==2.10.0
+tensorflow
+keras
 pyttsx3
 pillow
 scikit-learn
-scikeras==0.11.0
+scikeras
 Flask==2.3.3
 
