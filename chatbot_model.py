@@ -60,11 +60,12 @@ class RNNModel:
 
     def build_model(self, vocab_size, embedding_dim, rnn_units, batch_size):
         model = tf.keras.Sequential([
-            tf.keras.layers.Embedding(vocab_size, embedding_dim, batch_input_shape=[batch_size, None]),
+            tf.keras.layers.Embedding(vocab_size, embedding_dim, input_shape=(None,)),  # Modified line
             tf.keras.layers.GRU(rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform'),
             tf.keras.layers.Dense(vocab_size)
         ])
         return model
+
 
     def compile_model(self):
         # Loss function
