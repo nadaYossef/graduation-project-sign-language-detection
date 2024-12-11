@@ -28,36 +28,6 @@ def create_data_generator():
                                width_shift_range=0.1, height_shift_range=0.1, 
                                shear_range=0.1, horizontal_flip=True)
 
-import numpy as np
-import pandas as pd
-import math
-import matplotlib.pyplot as plt
-
-import tensorflow as tf
-from tensorflow.keras import models, layers
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, Input
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.callbacks import LearningRateScheduler, EarlyStopping, ModelCheckpoint
-from sklearn.model_selection import train_test_split, RepeatedKFold
-from sklearn.utils import class_weight
-
-def load_data(file_path):
-    return pd.read_csv(file_path)
-
-def preprocess_data(data):
-    targets = data['label']
-    inputs = data.drop(['label'], axis=1)
-    inputs = np.array(inputs).reshape(-1, 28, 28, 1) / 255.0
-    targets = to_categorical(targets)
-    return inputs, targets
-
-def create_data_generator():
-    return ImageDataGenerator(rotation_range=10, zoom_range=0.1, 
-                               width_shift_range=0.1, height_shift_range=0.1, 
-                               shear_range=0.1, horizontal_flip=True)
-
 def step_decay(epoch):
     initial_lrate = 0.001  # Adjusted learning rate
     drop = 0.5
